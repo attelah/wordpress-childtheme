@@ -1,19 +1,26 @@
-
 <?php
+/**
+ * Astra Child Theme functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package Astra Child
+ * @since 1.0.0
+ */
 
-// Filter (lite som middleware), kan användas fär att behandla innehåll i temat
-add_filter('generate_post_author_output', function($output) {
-    // $output tex.  "by welandfr@arcada.fi
-    return $output . " HELLO from filter!!!";
-});
+/**
+ * Define Constants
+ */
+define( 'CHILD_THEME_ASTRA_CHILD_VERSION', '1.0.0' );
 
-// Exempel: Hook, körs på ett visst ställe i temat
-function arcada_content() {
+/**
+ * Enqueue styles
+ */
+function child_enqueue_styles() {
 
-    echo '<div class="arcada-content entry-content">
-        <p><small>HELLO from <i>generate_after_content</i>-hook!!!!!</small></p>
-        </div>';
+	wp_enqueue_style( 'astra-child-theme-css', get_stylesheet_directory_uri() . '/style.css', array('astra-theme-css'), CHILD_THEME_ASTRA_CHILD_VERSION, 'all' );
 
 }
-// T.ex. körs vid "generate_after_content"
-add_action( 'generate_after_content', 'arcada_content', 10, 0 );
+
+add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
+?>
