@@ -28,8 +28,23 @@ add_action('wp_enqueue_scripts', 'child_enqueue_styles', 15);
 function notificationsBar()
 {
     echo '<div class="notificationsBar">';
-    echo 'Öppentiderna ändras fr.o.m. 1.6! Nya öppentiderna är: Mån-Lö 9 - 15';
+    echo 'Öppettiderna ändras fr.o.m. 1.6! Nya öppettiderna är: Mån-Lö 9 - 15';
     echo '</div>';
 }
 
+function googleAnalytics()
+{ ?>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-9YH7FCKPGM"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-9YH7FCKPGM');
+	</script>
+<?php }
+
 add_filter('astra_above_header', 'notificationsBar');
+add_action(	'wp_head', 'googleAnalytics', 10);
+?>
